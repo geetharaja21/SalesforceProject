@@ -13,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
+
 public class LaunchBrowser {
 
 	static WebDriver driver;
@@ -26,7 +27,9 @@ public class LaunchBrowser {
 		//CreateNewView();
 		//EditView();
 		//MergeAccounts();
-		CreateAccountReport();
+		//CreateAccountReport();
+		//Opportunities();
+		NewOpportunity();
 	}
 	public static void LoginToSFDC() throws InterruptedException{
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Venkat\\drivers\\chromedriver.exe");
@@ -435,4 +438,60 @@ public class LaunchBrowser {
 		System.out.println("Report generated successfully");
 	}
 	
+	public static void Opportunities() throws InterruptedException {
+		WebElement Opportunities=driver.findElement(By.xpath("//a[contains(text(),'Opportunities')]"));
+		Opportunities.click();
+		Thread.sleep(3000);
+		
+		WebElement View=driver.findElement(By.xpath("//select[@id='fcf']"));
+		Actions action=new Actions(driver);
+		action.moveToElement(View).click().build().perform();
+		Thread.sleep(3000);
+		System.out.println("Dropdown with all Opportunities displayed successfully");
+	}
+	
+	public static void NewOpportunity() throws InterruptedException {
+		WebElement Opportunities=driver.findElement(By.xpath("//a[contains(text(),'Opportunities')]"));
+		Opportunities.click();
+				
+		WebElement New=driver.findElement(By.xpath("//input[@name='new']"));
+		New.click();
+		
+		WebElement OName=driver.findElement(By.xpath("//input[@id='opp3']"));
+		OName.sendKeys("Hema Raja");
+		Thread.sleep(5000);
+		
+		WebElement AName=driver.findElement(By.xpath("//input[@id='opp4']"));
+		AName.sendKeys("Hema");
+		
+		WebElement CloseDate=driver.findElement(By.xpath("//input[@id='opp9']"));
+		Actions action=new Actions(driver);
+		action.moveToElement(CloseDate).click().build().perform();
+		
+		WebElement Today=driver.findElement(By.xpath("//a[@class='calToday']"));
+		Today.click();
+		Thread.sleep(4000);
+		
+		WebElement Stage=driver.findElement(By.xpath("//select[@id='opp11']"));
+		Select selectStage=new Select(Stage);
+		selectStage.selectByIndex(1);
+		
+		WebElement Probability=driver.findElement(By.xpath("//input[@id='opp12']"));
+		Probability.clear();
+		Probability.sendKeys("10");
+		Thread.sleep(3000);
+		
+		WebElement PrimaryCampaign=driver.findElement(By.xpath("//input[@id='opp17']"));
+		PrimaryCampaign.sendKeys("Widgets Webinar(Sample)");
+		Thread.sleep(3000);
+		
+		WebElement LeadSource=driver.findElement(By.xpath("//select[@id='opp6']"));
+		Select selectLead=new Select(LeadSource);
+		selectLead.selectByIndex(2);
+		
+		WebElement Save=driver.findElement(By.xpath("//td[@id='bottomButtonRow']//input[@name='save']"));
+		Save.click();
+		Thread.sleep(3000);
+		System.out.println("New Opportunity page is displayed with details");
+	}
 }
