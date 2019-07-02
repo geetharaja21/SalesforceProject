@@ -13,7 +13,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-
 public class LaunchBrowser {
 
 	static WebDriver driver;
@@ -29,7 +28,10 @@ public class LaunchBrowser {
 		//MergeAccounts();
 		//CreateAccountReport();
 		//Opportunities();
-		NewOpportunity();
+		//NewOpportunity();
+		//Test_OpportunityPipeline_Report();
+		//Test_StuckOpportunities_Report();
+		Test_QuarterlySummary_Report();
 	}
 	public static void LoginToSFDC() throws InterruptedException{
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Venkat\\drivers\\chromedriver.exe");
@@ -493,5 +495,46 @@ public class LaunchBrowser {
 		Save.click();
 		Thread.sleep(3000);
 		System.out.println("New Opportunity page is displayed with details");
+	}
+	
+	public static void Test_OpportunityPipeline_Report() throws InterruptedException {
+		WebElement Opportunities=driver.findElement(By.xpath("//a[contains(text(),'Opportunities')]"));
+		Opportunities.click();
+		Thread.sleep(3000);
+		
+		WebElement OPipeline=driver.findElement(By.xpath("//a[contains(text(),'Opportunity Pipeline')]"));
+		OPipeline.click();
+		System.out.println("Report Page with Opportunities that are pipelined will be displayed");
+		Thread.sleep(3000);
+	}
+	
+	public static void Test_StuckOpportunities_Report() throws InterruptedException {
+		WebElement Opportunities=driver.findElement(By.xpath("//a[contains(text(),'Opportunities')]"));
+		Opportunities.click();
+		Thread.sleep(3000);
+		
+		WebElement StuckOpp=driver.findElement(By.xpath("//a[contains(text(),'Stuck Opportunities')]"));
+		StuckOpp.click();
+		System.out.println("Report Page with the Opportunities that are Stuck will be displayed.");
+	}
+	
+	public static void Test_QuarterlySummary_Report() throws InterruptedException {
+		WebElement Opportunities=driver.findElement(By.xpath("//a[contains(text(),'Opportunities')]"));
+		Opportunities.click();
+			
+		WebElement Interval=driver.findElement(By.xpath("//select[@id='quarter_q']"));
+		Select selectInt=new Select(Interval);
+		selectInt.selectByValue("curnext3");
+		Thread.sleep(4000);
+		
+		WebElement Include=driver.findElement(By.xpath("//select[@id='open']"));
+		Select selectInclude=new Select(Include);
+		selectInclude.selectByValue("open");;
+		
+		WebElement RunReport=driver.findElement(By.xpath("//table[@class='opportunitySummary']//input[@name='go']"));
+		RunReport.click();
+		System.out.println("Respective Report page has been displayed successfully");
+		Thread.sleep(3000);
+		
 	}
 }
