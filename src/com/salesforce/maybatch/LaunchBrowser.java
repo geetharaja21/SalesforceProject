@@ -4,13 +4,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
-
 
 public class LaunchBrowser {
 
@@ -20,7 +21,12 @@ public class LaunchBrowser {
 		LoginToSFDC();
 		//MyProfile();
 		//MySettings();
-		DeveloperConsole();
+		//DeveloperConsole();
+		//CreateAccount();
+		//CreateNewView();
+		//EditView();
+		//MergeAccounts();
+		CreateAccountReport();
 	}
 	public static void LoginToSFDC() throws InterruptedException{
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Venkat\\drivers\\chromedriver.exe");
@@ -262,4 +268,174 @@ public class LaunchBrowser {
 		Thread.sleep(3000);
 		driver.switchTo().window(getWindow[1]).close();
 	}
+	
+	public static void CreateAccount() throws InterruptedException {
+
+		WebElement AccountsLink=driver.findElement(By.id("Account_Tab"));
+		AccountsLink.click();
+		System.out.println("Accounts link clicked successfully");
+		Thread.sleep(3000);		
+		
+		WebElement New=driver.findElement(By.xpath("//input[@name='new']"));
+		New.click();
+		
+		WebElement AccountName=driver.findElement(By.id("acc2"));
+		AccountName.sendKeys("Hema");
+		Thread.sleep(4000);
+		
+		WebElement Save=driver.findElement(By.xpath("//td[@id='topButtonRow']//input[@name='save']"));
+		Save.click();
+		System.out.println("New Account Page is displayed with account details successfully");
+	}
+	
+	public static void CreateNewView() throws InterruptedException {
+		WebElement AccountsLink=driver.findElement(By.id("Account_Tab"));
+		AccountsLink.click();
+		System.out.println("Accounts link clicked successfully");
+		Thread.sleep(3000);
+			
+		WebElement NewViewLink=driver.findElement(By.xpath("//a[contains(text(),'Create New View')]"));
+		NewViewLink.click();
+		
+		WebElement ViewName=driver.findElement(By.id("fname"));
+		ViewName.clear();
+		ViewName.sendKeys("Hema");
+		Thread.sleep(4000);
+		
+		WebElement ViewUniqueName=driver.findElement(By.id("devname"));
+		ViewUniqueName.clear();
+		ViewUniqueName.sendKeys("SalesForceDevelopment_Team1");
+		
+		WebElement Save=driver.findElement(By.xpath("//div[@class='pbHeader']//input[@name='save']"));
+		Save.click();
+		System.out.println("Newly added view should be displayed successfully in the account view list");
+		Thread.sleep(5000);
+	}
+	
+	public static void EditView() throws InterruptedException {
+		WebElement AccountsLink=driver.findElement(By.id("Account_Tab"));
+		AccountsLink.click();
+		System.out.println("Accounts link clicked successfully");
+			
+		WebElement viewDropdown=driver.findElement(By.xpath("//select[@id='fcf']"));
+		Select selectView=new Select(viewDropdown);
+		selectView.selectByIndex(2);
+		Thread.sleep(5000);
+		
+		WebElement Edit=driver.findElement(By.xpath("//a[contains(text(),'Edit')]"));
+		Edit.click();
+		System.out.println("View name selected and Edit page has been displayed");
+		Thread.sleep(4000);
+			
+		WebElement viewName=driver.findElement(By.xpath("//input[@id='fname']"));
+		viewName.sendKeys("Haripriya");
+		
+		WebElement Field=driver.findElement(By.xpath("//select[@id='fcol1']"));
+		Select selectField=new Select(Field);
+		selectField.selectByValue("ACCOUNT.NAME");;
+		Thread.sleep(3000);
+		
+		WebElement Operator=driver.findElement(By.xpath("//select[@id='fop1']"));
+		Select selectOperator=new Select(Operator);
+		selectOperator.selectByValue("c");;
+		
+		WebElement Value=driver.findElement(By.xpath("//input[@id='fval1']"));
+		Value.clear();
+		Value.sendKeys("a");
+		Thread.sleep(3000);
+		
+		WebElement AvailableFields=driver.findElement(By.xpath("//select[@id='colselector_select_0']"));
+		Select selectAvailFields=new Select(AvailableFields);
+		selectAvailFields.selectByVisibleText("Last Activity");
+		
+		WebElement Add=driver.findElement(By.xpath("//img[@class='rightArrowIcon']"));
+		Add.click();
+		Thread.sleep(3000);
+		
+		WebElement Save=driver.findElement(By.xpath("//input[@class='btn primary']"));
+		Save.click();
+		System.out.println("View will have Last activity column added and the data has been displayed successfully");
+		Thread.sleep(5000);
+	}
+	
+	public static void MergeAccounts() throws InterruptedException {
+		WebElement AccountsLink=driver.findElement(By.id("Account_Tab"));
+		AccountsLink.click();
+		System.out.println("Accounts link clicked successfully");
+			
+		WebElement MergeAccounts=driver.findElement(By.xpath("//a[contains(text(),'Merge Accounts')]"));
+		MergeAccounts.click();
+		Thread.sleep(3000);
+		
+		WebElement EnterAccts=driver.findElement(By.id("srch"));
+		EnterAccts.sendKeys("Hema");
+		
+		WebElement FindAccts=driver.findElement(By.xpath("//input[@name='srchbutton']"));
+		FindAccts.click();
+		
+		Thread.sleep(3000);
+		
+		WebElement next=driver.findElement(By.xpath("//div[@class='pbTopButtons']//input[@name='goNext']"));
+		next.click();
+		System.out.println("Accounts selected successfully and clicked next button");
+		Thread.sleep(3000);
+				
+		WebElement Merge=driver.findElement(By.xpath("//div[@class='pbTopButtons']//input[@name='save']"));
+		Merge.click();
+		Thread.sleep(5000);
+		
+		Alert alert=driver.switchTo().alert();
+		alert.accept();
+		System.out.println("Accounts merged successfully and pop up displayed");
+	}
+	
+	public static void CreateAccountReport() throws InterruptedException {
+		WebElement AccountsLink=driver.findElement(By.id("Account_Tab"));
+		AccountsLink.click();
+		System.out.println("Accounts link clicked successfully");
+	
+		WebElement LastActivity=driver.findElement(By.xpath("//a[contains(text(),'Accounts with last activity > 30 days')]"));
+		LastActivity.click();
+		System.out.println("Unsaved Report page is displayed successfully");
+				
+		WebElement DateField=driver.findElement(By.id("ext-gen20"));
+		Actions action=new Actions(driver);
+		action.moveToElement(DateField).click().build().perform();		
+		Thread.sleep(5000);
+		DateField.sendKeys(Keys.ARROW_DOWN);
+		DateField.sendKeys(Keys.ENTER);
+		
+	
+		WebElement From=driver.findElement(By.xpath("//img[@id='ext-gen152']"));
+		Actions action1=new Actions(driver);
+		action1.moveToElement(From).click().build().perform();
+		Thread.sleep(3000);
+		//From.sendKeys(Keys.ENTER);
+		//.sendKeys(driver.findElement(By.xpath("//button[@id='ext-gen253']")));
+		
+		WebElement Today=driver.findElement(By.xpath("//table[@id='ext-comp-1112']"));
+		Today.click();
+		
+		WebElement save=driver.findElement(By.xpath("//button[@id='ext-gen49']"));
+		save.click();
+		Thread.sleep(4000);
+		
+		WebElement ReportName=driver.findElement(By.xpath("//input[@id='saveReportDlg_reportNameField']"));
+		ReportName.sendKeys("Hema");
+		
+		WebElement ReportUniqueName=driver.findElement(By.xpath("//input[@id='saveReportDlg_DeveloperName']"));
+		ReportUniqueName.sendKeys("SFDCReport_Hema1");
+		Thread.sleep(7000);
+		
+		WebElement Save=driver.findElement(By.xpath("//button[@id='ext-gen275']"));
+		Save.click();
+		System.out.println("Report has been saved successfully");
+		Thread.sleep(10000);
+		
+		WebElement RunReport=driver.findElement(By.id("ext-gen63"));
+		RunReport.click();
+		Thread.sleep(5000);
+		System.out.println("Report generated successfully");
+	}
+	
 }
