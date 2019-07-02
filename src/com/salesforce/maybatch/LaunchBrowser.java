@@ -424,17 +424,14 @@ public class LaunchBrowser {
 		ReportName.sendKeys("Hema");
 		
 		WebElement ReportUniqueName=driver.findElement(By.xpath("//input[@id='saveReportDlg_DeveloperName']"));
-		ReportUniqueName.sendKeys("SFDCReport_Hema1");
-		Thread.sleep(7000);
+		ReportUniqueName.sendKeys("SFDCReport_Hema1new");
+		Thread.sleep(10000);
 		
-		WebElement Save=driver.findElement(By.xpath("//button[@id='ext-gen275']"));
-		Save.click();
+		WebElement SaveRun=driver.findElement(By.xpath("//button[@id='ext-gen276']"));
+		SaveRun.click();
 		System.out.println("Report has been saved successfully");
 		Thread.sleep(10000);
 		
-		WebElement RunReport=driver.findElement(By.id("ext-gen63"));
-		RunReport.click();
-		Thread.sleep(5000);
 		System.out.println("Report generated successfully");
 	}
 	
