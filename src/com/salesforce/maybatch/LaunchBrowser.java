@@ -36,7 +36,9 @@ public class LaunchBrowser {
 		//Leads_SelectView();
 		// Default_View();
 		 //Todays_Lead();
-		Check_New_OnLeads();
+		//Check_New_OnLeads();
+		//Create_New_Contact();
+		 Create_NewView_ContactsPage();
 	}
 	public static void LoginToSFDC() throws InterruptedException{
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Venkat\\drivers\\chromedriver.exe");
@@ -461,8 +463,8 @@ public class LaunchBrowser {
 		WebElement Opportunities=driver.findElement(By.xpath("//a[contains(text(),'Opportunities')]"));
 		Opportunities.click();
 				
-		WebElement New=driver.findElement(By.xpath("//input[@name='new']"));
-		New.click();
+		WebElement NewOpp=driver.findElement(By.xpath("//input[@name='new']"));
+		NewOpp.click();
 		
 		WebElement OName=driver.findElement(By.xpath("//input[@id='opp3']"));
 		OName.sendKeys("Hema Raja");
@@ -661,8 +663,8 @@ public class LaunchBrowser {
 		Thread.sleep(3000);
 		System.out.println("Link Navigated to the Leads Home Page Successfully");
 		
-		WebElement New=driver.findElement(By.xpath("//input[@name='new']"));
-		New.click();
+		WebElement NewLead=driver.findElement(By.xpath("//input[@name='new']"));
+		NewLead.click();
 		System.out.println("New Lead Creation page opened successfully");
 		Thread.sleep(3000);
 		
@@ -678,6 +680,55 @@ public class LaunchBrowser {
 		Thread.sleep(4000);
 		System.out.println("Newly created lead view page should be opened successfully");
 		
+	}
+	
+	public static void Create_New_Contact() throws InterruptedException {
 		
+		WebElement ContactsTab=driver.findElement(By.xpath("//a[contains(text(),'Contacts')]"));
+		ContactsTab.click();
+		Thread.sleep(2000);
+		System.out.println("Contacts Home page displayed successfully");
+		
+		WebElement NewContact=driver.findElement(By.xpath("//input[@name='new']"));
+		NewContact.click();
+		System.out.println("New Contact HomePage displayed successfully");
+		
+		WebElement ContactsLName=driver.findElement(By.xpath("//input[@id='name_lastcon2']"));
+		ContactsLName.sendKeys("Govind");
+		
+		WebElement AcctName=driver.findElement(By.xpath("//input[@id='con4']"));
+		AcctName.sendKeys("Hema");
+		Thread.sleep(3000);
+		
+		WebElement SaveContact=driver.findElement(By.xpath("//td[@id='topButtonRow']//input[@name='save']"));
+		SaveContact.click();
+		Thread.sleep(3000);
+		System.out.println("New Contact created successfully");
+	}
+	
+	public static void Create_NewView_ContactsPage() throws InterruptedException {
+		
+		WebElement ContactsTab=driver.findElement(By.xpath("//a[contains(text(),'Contacts')]"));
+		ContactsTab.click();
+		Thread.sleep(2000);
+		System.out.println("Contacts Home page displayed successfully");
+		
+		WebElement CreateNewView=driver.findElement(By.xpath("//a[contains(text(),'Create New View')]"));
+		CreateNewView.click();
+		Thread.sleep(3000);
+		System.out.println("New View Page displayed successfully");
+		
+		WebElement ViewNameCont=driver.findElement(By.xpath("//input[@id='fname']"));
+		ViewNameCont.sendKeys("Raj");
+		
+		WebElement ViewUName=driver.findElement(By.xpath("//input[@id='devname']"));
+		ViewUName.clear();
+		ViewUName.sendKeys("Varma");
+		Thread.sleep(2000);
+		
+		WebElement SaveView=driver.findElement(By.xpath("//div[@class='pbHeader']//input[@name='save']"));
+		SaveView.click();
+		Thread.sleep(5000);
+		System.out.println("Created View name is displayed in drop down in that page by defalut");
 	}
 }
