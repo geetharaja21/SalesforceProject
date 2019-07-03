@@ -31,7 +31,12 @@ public class LaunchBrowser {
 		//NewOpportunity();
 		//Test_OpportunityPipeline_Report();
 		//Test_StuckOpportunities_Report();
-		Test_QuarterlySummary_Report();
+		//Test_QuarterlySummary_Report();
+		//Leads_Tab();
+		//Leads_SelectView();
+		// Default_View();
+		 //Todays_Lead();
+		Check_New_OnLeads();
 	}
 	public static void LoginToSFDC() throws InterruptedException{
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Venkat\\drivers\\chromedriver.exe");
@@ -210,8 +215,8 @@ public class LaunchBrowser {
 		Add.click();
 		System.out.println("Reports field has been added to Selected Tab List Successfully and also added on the links top");
 				
-		WebElement save=driver.findElement(By.xpath("//input[@name='save']"));
-		save.click();
+		WebElement save1=driver.findElement(By.xpath("//input[@name='save']"));
+		save1.click();
 		Thread.sleep(5000);
 		
 		WebElement Email=driver.findElement(By.id("EmailSetup_font"));
@@ -311,8 +316,8 @@ public class LaunchBrowser {
 		ViewUniqueName.clear();
 		ViewUniqueName.sendKeys("SalesForceDevelopment_Team1");
 		
-		WebElement Save=driver.findElement(By.xpath("//div[@class='pbHeader']//input[@name='save']"));
-		Save.click();
+		WebElement Save1=driver.findElement(By.xpath("//div[@class='pbHeader']//input[@name='save']"));
+		Save1.click();
 		System.out.println("Newly added view should be displayed successfully in the account view list");
 		Thread.sleep(5000);
 	}
@@ -357,8 +362,8 @@ public class LaunchBrowser {
 		Add.click();
 		Thread.sleep(3000);
 		
-		WebElement Save=driver.findElement(By.xpath("//input[@class='btn primary']"));
-		Save.click();
+		WebElement Save2=driver.findElement(By.xpath("//input[@class='btn primary']"));
+		Save2.click();
 		System.out.println("View will have Last activity column added and the data has been displayed successfully");
 		Thread.sleep(5000);
 	}
@@ -421,8 +426,8 @@ public class LaunchBrowser {
 		WebElement Today=driver.findElement(By.xpath("//table[@id='ext-comp-1112']"));
 		Today.click();
 		
-		WebElement save=driver.findElement(By.xpath("//button[@id='ext-gen49']"));
-		save.click();
+		WebElement save2=driver.findElement(By.xpath("//button[@id='ext-gen49']"));
+		save2.click();
 		Thread.sleep(4000);
 		
 		WebElement ReportName=driver.findElement(By.xpath("//input[@id='saveReportDlg_reportNameField']"));
@@ -491,8 +496,8 @@ public class LaunchBrowser {
 		Select selectLead=new Select(LeadSource);
 		selectLead.selectByIndex(2);
 		
-		WebElement Save=driver.findElement(By.xpath("//td[@id='bottomButtonRow']//input[@name='save']"));
-		Save.click();
+		WebElement SaveOpp=driver.findElement(By.xpath("//td[@id='bottomButtonRow']//input[@name='save']"));
+		SaveOpp.click();
 		Thread.sleep(3000);
 		System.out.println("New Opportunity page is displayed with details");
 	}
@@ -535,6 +540,144 @@ public class LaunchBrowser {
 		RunReport.click();
 		System.out.println("Respective Report page has been displayed successfully");
 		Thread.sleep(3000);
+		
+	}
+	
+	public static void Leads_Tab() throws InterruptedException {
+		
+		WebElement LeadsTab=driver.findElement(By.xpath("//a[contains(text(),'Leads')]"));
+		LeadsTab.click();
+		Thread.sleep(3000);
+		System.out.println("Link Navigated to the Leads Home Page Successfully");
+	}
+	
+	public static void Leads_SelectView() throws InterruptedException {
+
+		WebElement LeadsTab=driver.findElement(By.xpath("//a[contains(text(),'Leads')]"));
+		LeadsTab.click();
+		Thread.sleep(3000);
+		System.out.println("Link Navigated to the Leads Home Page Successfully");
+		
+		WebElement LeadView=driver.findElement(By.xpath("//select[@id='fcf']"));
+		Actions action1=new Actions(driver);
+		action1.moveToElement(LeadView).click().build().perform();
+		Thread.sleep(3000);
+		System.out.println("Dropdown with all Lead contents displayed successfully");
+		
+		WebElement UserMenuChk=driver.findElement(By.xpath("//div[@id='userNav-arrow']"));
+		Actions act=new Actions(driver);
+		act.moveToElement(UserMenuChk).click().build().perform();
+		System.out.println("Checked for UserMenu DropDown");
+				
+		Thread.sleep(5000);
+		
+		WebElement logOut=driver.findElement(By.xpath("//a[contains(text(),'Logout')]"));
+		logOut.click();
+		System.out.println("Logout done sucessfully");
+				
+	}
+	
+	public static void Default_View() throws InterruptedException {
+		
+		WebElement LeadsTab=driver.findElement(By.xpath("//a[contains(text(),'Leads')]"));
+		LeadsTab.click();
+		Thread.sleep(3000);
+		System.out.println("Link Navigated to the Leads Home Page Successfully");
+		
+		WebElement LeadView=driver.findElement(By.xpath("//select[@id='fcf']"));
+		Select selView=new Select(LeadView);
+		selView.selectByIndex(2);
+		Thread.sleep(3000);
+		System.out.println("Today's Lead selected successfully");
+		
+		WebElement UserMenuChk=driver.findElement(By.xpath("//div[@id='userNav-arrow']"));
+		Actions act=new Actions(driver);
+		act.moveToElement(UserMenuChk).click().build().perform();
+		System.out.println("Checked for UserMenu DropDown");
+				
+		Thread.sleep(5000);
+		
+		WebElement logOut=driver.findElement(By.xpath("//a[contains(text(),'Logout')]"));
+		logOut.click();
+		System.out.println("Logout done sucessfully");
+		Thread.sleep(10000);
+		
+		WebElement pwd=driver.findElement(By.xpath("//input[@id='password']"));
+		pwd.sendKeys("Metropcs21");
+		Thread.sleep(3000);
+		
+		WebElement loginButton=driver.findElement(By.xpath("//input[@id='Login']"));
+		loginButton.click();
+		Thread.sleep(3000);
+		
+		WebElement LeadsTab1=driver.findElement(By.xpath("//a[contains(text(),'Leads')]"));
+		LeadsTab1.click();
+		Thread.sleep(2000);
+		
+		WebElement Go=driver.findElement(By.xpath("//span[@class='fBody']//input[@name='go']"));
+		Go.click();
+		System.out.println("Lead View's Page displayed successfully");
+		Thread.sleep(3000);
+	}
+	
+	public static void Todays_Lead() throws InterruptedException {
+		
+		WebElement LeadsTab=driver.findElement(By.xpath("//a[contains(text(),'Leads')]"));
+		LeadsTab.click();
+		Thread.sleep(3000);
+		System.out.println("Link Navigated to the Leads Home Page Successfully");
+		
+		WebElement LeadView=driver.findElement(By.xpath("//select[@id='fcf']"));
+		Select selView=new Select(LeadView);
+		selView.selectByIndex(2);
+		Thread.sleep(3000);
+		System.out.println("Today's Lead selected successfully");
+		
+		WebElement Go=driver.findElement(By.xpath("//span[@class='fBody']//input[@name='go']"));
+		Go.click();
+		System.out.println("Lead View's Page displayed successfully");
+		Thread.sleep(3000);
+		
+		WebElement UserMenuChk=driver.findElement(By.xpath("//div[@id='userNav-arrow']"));
+		Actions act=new Actions(driver);
+		act.moveToElement(UserMenuChk).click().build().perform();
+		System.out.println("Checked for UserMenu DropDown");
+				
+		Thread.sleep(5000);
+		
+		WebElement logOut=driver.findElement(By.xpath("//a[contains(text(),'Logout')]"));
+		logOut.click();
+		System.out.println("Logout done sucessfully");
+		Thread.sleep(10000);
+		
+		driver.quit();
+		System.out.println("Application closed successfully");
+	}
+	
+	public static void Check_New_OnLeads() throws InterruptedException {
+		
+		WebElement LeadsTab=driver.findElement(By.xpath("//a[contains(text(),'Leads')]"));
+		LeadsTab.click();
+		Thread.sleep(3000);
+		System.out.println("Link Navigated to the Leads Home Page Successfully");
+		
+		WebElement New=driver.findElement(By.xpath("//input[@name='new']"));
+		New.click();
+		System.out.println("New Lead Creation page opened successfully");
+		Thread.sleep(3000);
+		
+		WebElement LName=driver.findElement(By.xpath("//input[@id='name_lastlea2']"));
+		LName.sendKeys("ABCD");
+		
+		WebElement Company=driver.findElement(By.xpath("//input[@id='lea3']"));
+		Company.sendKeys("ABCD");
+		Thread.sleep(3000);
+		
+		WebElement SaveLead=driver.findElement(By.xpath("//td[@id='topButtonRow']//input[@name='save']"));
+		SaveLead.click();
+		Thread.sleep(4000);
+		System.out.println("Newly created lead view page should be opened successfully");
+		
 		
 	}
 }
