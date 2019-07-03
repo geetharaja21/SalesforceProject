@@ -50,7 +50,8 @@ public class LaunchBrowser {
 		//Verify_Edited_LastName();
 		//Verify_Tab_Customization();
 		//Block_An_Event_Calendar();
-		Block_Event_Calendar_With_Recurrence();
+		//Block_Event_Calendar_With_Recurrence();
+		Verify_Welcome_Page();
 	}
 	public static void LoginToSFDC() throws InterruptedException{
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Venkat\\drivers\\chromedriver.exe");
@@ -1064,13 +1065,46 @@ public class LaunchBrowser {
 		
 		WebElement SaveTime1=driver.findElement(By.xpath("//td[@id='bottomButtonRow']//input[@name='save']"));
 		SaveTime1.click();
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		
 		WebElement MonthView=driver.findElement(By.xpath("//img[@class='monthViewIcon']"));
 		MonthView.click();
-		Thread.sleep(4000);
+		Thread.sleep(7000);
 		System.out.println("Month View' page should be displayed and 'Other' event blocked as a link.");
 		
 		driver.quit();
+		
+	}
+	
+	public static void Verify_Welcome_Page() throws InterruptedException {
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Venkat\\drivers\\chromedriver.exe");
+		
+		//Initialize browser
+		driver=new ChromeDriver();
+		//Open SalesForce
+		driver.get("https://login.salesforce.com/");
+		
+		//Maximize browser
+		driver.manage().window().maximize();
+		System.out.println("Application launched successfully");
+				
+		//delete all cookies
+		driver.manage().deleteAllCookies();
+		
+		//Get Username
+		WebElement userNamenew=driver.findElement(By.name("username"));
+		userNamenew.sendKeys("bhagatlingesh@gmail.com");
+		System.out.println("Enter username passed successfully");
+			
+		//Enter password
+		WebElement passWordnew=driver.findElement(By.cssSelector("#password"));
+		passWordnew.sendKeys("lexkum143!");
+		
+		WebElement loginButton=driver.findElement(By.xpath("//input[@id='Login']"));
+		loginButton.click();
+		System.out.println("Enter login Button passed successfully");
+		
+		Thread.sleep(5000);
 	}
 }
