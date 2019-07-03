@@ -2,6 +2,7 @@ package com.salesforce.maybatch;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Set;
 
 import org.openqa.selenium.Alert;
@@ -44,7 +45,12 @@ public class LaunchBrowser {
 		//View_A_Contact();
 		//Check_Error_Message();
 		//Check_Cancel_Button();
-		Check_SaveNew_ContactPage();
+		//Check_SaveNew_ContactPage();
+		//Verify_Fname_Lname_HomePage();
+		//Verify_Edited_LastName();
+		//Verify_Tab_Customization();
+		//Block_An_Event_Calendar();
+		Block_Event_Calendar_With_Recurrence();
 	}
 	public static void LoginToSFDC() throws InterruptedException{
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Venkat\\drivers\\chromedriver.exe");
@@ -179,9 +185,9 @@ public class LaunchBrowser {
 	}
 	
 	public static void MySettings() throws InterruptedException {
-		WebElement UserMenuChk=driver.findElement(By.xpath("//div[@id='userNav-arrow']"));
+		WebElement UserMenuChk1=driver.findElement(By.xpath("//div[@id='userNav-arrow']"));
 		Actions act=new Actions(driver);
-		act.moveToElement(UserMenuChk).click().build().perform();
+		act.moveToElement(UserMenuChk1).click().build().perform();
 		System.out.println("Checked for UserMenu DropDown");
 		Thread.sleep(5000);
 		
@@ -270,9 +276,9 @@ public class LaunchBrowser {
 	}
 	
 	public static void DeveloperConsole() throws InterruptedException {
-		WebElement UserMenuChk=driver.findElement(By.xpath("//div[@id='userNav-arrow']"));
+		WebElement UserMenuChk2=driver.findElement(By.xpath("//div[@id='userNav-arrow']"));
 		Actions act=new Actions(driver);
-		act.moveToElement(UserMenuChk).click().build().perform();
+		act.moveToElement(UserMenuChk2).click().build().perform();
 		System.out.println("Checked for UserMenu DropDown");
 				
 		WebElement DeveloperConsole=driver.findElement(By.xpath("//a[@class='debugLogLink menuButtonMenuLink']"));
@@ -572,9 +578,9 @@ public class LaunchBrowser {
 		Thread.sleep(3000);
 		System.out.println("Dropdown with all Lead contents displayed successfully");
 		
-		WebElement UserMenuChk=driver.findElement(By.xpath("//div[@id='userNav-arrow']"));
+		WebElement UserMenuChk3=driver.findElement(By.xpath("//div[@id='userNav-arrow']"));
 		Actions act=new Actions(driver);
-		act.moveToElement(UserMenuChk).click().build().perform();
+		act.moveToElement(UserMenuChk3).click().build().perform();
 		System.out.println("Checked for UserMenu DropDown");
 				
 		Thread.sleep(5000);
@@ -598,20 +604,20 @@ public class LaunchBrowser {
 		Thread.sleep(3000);
 		System.out.println("Today's Lead selected successfully");
 		
-		WebElement UserMenuChk=driver.findElement(By.xpath("//div[@id='userNav-arrow']"));
+		WebElement UserMenuChk4=driver.findElement(By.xpath("//div[@id='userNav-arrow']"));
 		Actions act=new Actions(driver);
-		act.moveToElement(UserMenuChk).click().build().perform();
+		act.moveToElement(UserMenuChk4).click().build().perform();
 		System.out.println("Checked for UserMenu DropDown");
 				
 		Thread.sleep(5000);
 		
-		WebElement logOut=driver.findElement(By.xpath("//a[contains(text(),'Logout')]"));
-		logOut.click();
+		WebElement logOut1=driver.findElement(By.xpath("//a[contains(text(),'Logout')]"));
+		logOut1.click();
 		System.out.println("Logout done sucessfully");
 		Thread.sleep(10000);
 		
-		WebElement pwd=driver.findElement(By.xpath("//input[@id='password']"));
-		pwd.sendKeys("Metropcs21");
+		WebElement pwd1=driver.findElement(By.xpath("//input[@id='password']"));
+		pwd1.sendKeys("Metropcs21");
 		Thread.sleep(3000);
 		
 		WebElement loginButton=driver.findElement(By.xpath("//input[@id='Login']"));
@@ -646,15 +652,15 @@ public class LaunchBrowser {
 		System.out.println("Lead View's Page displayed successfully");
 		Thread.sleep(3000);
 		
-		WebElement UserMenuChk=driver.findElement(By.xpath("//div[@id='userNav-arrow']"));
+		WebElement UserMenuChk5=driver.findElement(By.xpath("//div[@id='userNav-arrow']"));
 		Actions act=new Actions(driver);
-		act.moveToElement(UserMenuChk).click().build().perform();
+		act.moveToElement(UserMenuChk5).click().build().perform();
 		System.out.println("Checked for UserMenu DropDown");
 				
 		Thread.sleep(5000);
 		
-		WebElement logOut=driver.findElement(By.xpath("//a[contains(text(),'Logout')]"));
-		logOut.click();
+		WebElement logOut2=driver.findElement(By.xpath("//a[contains(text(),'Logout')]"));
+		logOut2.click();
 		System.out.println("Logout done sucessfully");
 		Thread.sleep(10000);
 		
@@ -850,5 +856,221 @@ public class LaunchBrowser {
 		Thread.sleep(2000);
 		System.out.println("New contact is created. Contact Edit:New Contact Page is dispalyed");
 		
+	}
+	
+	public static void Verify_Fname_Lname_HomePage() throws InterruptedException {
+		
+		WebElement HomeTab=driver.findElement(By.xpath("//a[@class='brandPrimaryFgr']"));
+		HomeTab.click();
+		System.out.println("Home Page displayed successfully");
+		
+		WebElement NameLink=driver.findElement(By.xpath("//h1[@class='currentStatusUserName']//a[contains(text(),'Hema RajaSrinivasan')]"));
+		NameLink.click();
+		Thread.sleep(3000);
+		System.out.println("The page displayed should be same as MyProfile page");
+	}
+	
+	public static void Verify_Edited_LastName() throws InterruptedException {
+		
+		WebElement HomeTab1=driver.findElement(By.xpath("//a[@class='brandPrimaryFgr']"));
+		HomeTab1.click();
+		System.out.println("Home Page displayed successfully");
+		
+		WebElement NameLink1=driver.findElement(By.xpath("//h1[@class='currentStatusUserName']//a[contains(text(),'Hema RajaSrinivasan')]"));
+		NameLink1.click();
+		Thread.sleep(3000);
+		
+		WebElement EditProfileIcon=driver.findElement(By.xpath("//a[@class='contactInfoLaunch editLink']//img"));
+		EditProfileIcon.click();
+		Thread.sleep(3000);
+		System.out.println("The 'Edit Profile' popup should be displayed with the 'Contact' tab selected.");
+		
+		driver.switchTo().frame("contactInfoContentId");
+		System.out.println("Switched to frame:");
+		Thread.sleep(3000);
+		
+		WebElement AboutTab1 = driver.findElement(By.xpath("//a[contains(text(),'About')]"));
+		Actions action1 = new Actions(driver);
+		action1.moveToElement(AboutTab1).click().build().perform();
+		System.out.println("Clicked on AboutTab Successfully");
+		
+		WebElement LastName1=driver.findElement(By.id("lastName"));
+		LastName1.clear();
+		LastName1.sendKeys("ABCD");
+		
+		WebElement saveAll1=driver.findElement(By.xpath("//input[@class='zen-btn zen-primaryBtn zen-pas']"));
+		saveAll1.click();
+		System.out.println("Save All done and Last Name updated successfully");
+		Thread.sleep(5000);
+	}
+	
+	public static void Verify_Tab_Customization() throws InterruptedException {
+		
+		WebElement PlusTab=driver.findElement(By.xpath("//img[@class='allTabsArrow']"));
+		PlusTab.click();
+		
+		WebElement CustomizeMyTab1=driver.findElement(By.xpath("//input[@name='customize']"));
+		CustomizeMyTab1.click();
+		Thread.sleep(3000);
+		System.out.println("'The 'Customize My Tabs' page should be displayed.");
+		
+		WebElement SelectedTabs=driver.findElement(By.xpath("//select[@id='duel_select_1']"));
+		Select selectTabs=new Select(SelectedTabs);
+		selectTabs.selectByValue("Chatter");
+		
+		WebElement Remove=driver.findElement(By.xpath("//img[@class='leftArrowIcon']"));
+		Remove.click();
+		Thread.sleep(2000);
+		System.out.println("The Selected Tab should be moved to the 'Available Tabs' section.");
+		
+		WebElement Save3=driver.findElement(By.xpath("//input[@name='save']"));
+		Save3.click();
+		Thread.sleep(2000);
+		
+		WebElement UserMenuChk6=driver.findElement(By.xpath("//div[@id='userNav-arrow']"));
+		Actions act=new Actions(driver);
+		act.moveToElement(UserMenuChk6).click().build().perform();
+		System.out.println("Checked for UserMenu DropDown");
+				
+		Thread.sleep(5000);
+		
+		WebElement logOut3=driver.findElement(By.xpath("//a[contains(text(),'Logout')]"));
+		logOut3.click();
+		System.out.println("Logout done sucessfully");
+		Thread.sleep(5000);
+		
+		WebElement pwd2=driver.findElement(By.xpath("//input[@id='password']"));
+		pwd2.sendKeys("Metropcs21");
+		Thread.sleep(3000);
+		
+		WebElement loginButton=driver.findElement(By.xpath("//input[@id='Login']"));
+		loginButton.click();
+		Thread.sleep(3000);
+	}
+	
+	public static void Block_An_Event_Calendar() throws InterruptedException {
+		
+		WebElement HomeTab2=driver.findElement(By.xpath("//a[@class='brandPrimaryFgr']"));
+		HomeTab2.click();
+		System.out.println("Home Page displayed successfully");
+		
+		WebElement CurrentDate=driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[2]/div[1]/div[1]/div[1]/div[1]/span[2]/a[1]"));
+		CurrentDate.click();
+		Thread.sleep(3000);
+		
+		WebElement ClickLink=driver.findElement(By.xpath("//a[contains(text(),'8:00 PM')]"));
+		ClickLink.click();
+		Thread.sleep(2000);
+		
+		WebElement SubjComboIcon=driver.findElement(By.xpath("//img[@class='comboboxIcon']"));
+		SubjComboIcon.click();
+		
+		String MainWindow=driver.getWindowHandle();
+		
+		//To get window Handle of all Opened Windows
+		Set<String> s1=driver.getWindowHandles();
+		Iterator<String> i1=s1.iterator();
+		
+		while(i1.hasNext()) {
+			String ChildWindow=i1.next();
+			
+			if(!MainWindow.equalsIgnoreCase(ChildWindow)) {
+				//Switching to childWindow
+				driver.switchTo().window(ChildWindow);
+				driver.findElement(By.xpath("//a[contains(text(),'Other')]")).click();
+				}
+		}
+		//Switching to Parent Window
+		
+		driver.switchTo().window(MainWindow);	
+		Thread.sleep(2000);
+		
+		WebElement EndTime=driver.findElement(By.xpath("//input[@id='EndDateTime_time']"));
+		Actions moveto=new Actions(driver);
+		moveto.moveToElement(EndTime).click().build().perform();
+		
+		WebElement selectEndTime=driver.findElement(By.xpath("//div[@id='timePickerItem_42']"));
+		selectEndTime.click();
+		Thread.sleep(3000);
+		
+		WebElement SaveTime=driver.findElement(By.xpath("//div[contains(@class,'pbBottomButtons')]//input[1]"));
+		SaveTime.click();
+		Thread.sleep(3000);
+		System.out.println("The 'Calendar for FirstName LastName' page should be displayed with 'Other' event in the time slot 8:00PM to 9:00PM, as a link.");
+		
+	}
+	
+	public static void Block_Event_Calendar_With_Recurrence() throws InterruptedException {
+		
+		WebElement HomeTab3=driver.findElement(By.xpath("//a[@class='brandPrimaryFgr']"));
+		HomeTab3.click();
+		System.out.println("Home Page displayed successfully");
+		
+		WebElement CurrentDate1=driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[2]/div[1]/div[1]/div[1]/div[1]/span[2]/a[1]"));
+		CurrentDate1.click();
+		Thread.sleep(3000);
+		
+		WebElement Click4PMLink=driver.findElement(By.xpath("//a[contains(text(),'4:00 PM')]"));
+		Click4PMLink.click();
+		Thread.sleep(2000);
+		
+		WebElement SubjComboIcon=driver.findElement(By.xpath("//img[@class='comboboxIcon']"));
+		SubjComboIcon.click();
+		
+		String MainWindow1=driver.getWindowHandle();
+		
+		//To get window Handle of all Opened Windows
+		Set<String> s2=driver.getWindowHandles();
+		Iterator<String> i2=s2.iterator();
+		
+		while(i2.hasNext()) {
+			String ChildWindow1=i2.next();
+			
+			if(!MainWindow1.equalsIgnoreCase(ChildWindow1)) {
+				//Switching to childWindow
+				driver.switchTo().window(ChildWindow1);
+				driver.findElement(By.xpath("//a[contains(text(),'Other')]")).click();
+				}
+		}
+		//Switching to Parent Window
+		
+		driver.switchTo().window(MainWindow1);	
+		Thread.sleep(2000);
+		System.out.println("Other should be entered in the Subject field");
+		
+		WebElement EndTime1=driver.findElement(By.xpath("//input[@id='EndDateTime_time']"));
+		Actions moveto=new Actions(driver);
+		moveto.moveToElement(EndTime1).click().build().perform();
+		
+		WebElement selectEndTime1=driver.findElement(By.xpath("//div[@id='timePickerItem_38']"));
+		selectEndTime1.click();
+		Thread.sleep(3000);
+		
+		WebElement CheckRecurrence=driver.findElement(By.xpath("//input[@id='IsRecurrence']"));
+		CheckRecurrence.click();
+		Thread.sleep(2000);
+		
+		WebElement Weekly=driver.findElement(By.xpath("//input[@id='rectypeftw']"));
+		Weekly.click();
+		
+		WebElement RecurrenceEnd=driver.findElement(By.xpath("//input[@id='RecurrenceEndDateOnly']"));
+		Actions Endmove=new Actions(driver);
+		Endmove.moveToElement(RecurrenceEnd).click().build().perform();
+		
+		WebElement DateAfterTwoWeeks=driver.findElement(By.xpath("//td[contains(text(),'17')]"));
+		DateAfterTwoWeeks.click();
+		Thread.sleep(2000);
+		System.out.println("The 'End Date' should be selected and the calendar should be closed.");
+		
+		WebElement SaveTime1=driver.findElement(By.xpath("//td[@id='bottomButtonRow']//input[@name='save']"));
+		SaveTime1.click();
+		Thread.sleep(2000);
+		
+		WebElement MonthView=driver.findElement(By.xpath("//img[@class='monthViewIcon']"));
+		MonthView.click();
+		Thread.sleep(4000);
+		System.out.println("Month View' page should be displayed and 'Other' event blocked as a link.");
+		
+		driver.quit();
 	}
 }
